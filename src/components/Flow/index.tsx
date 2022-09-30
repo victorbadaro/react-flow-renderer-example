@@ -1,9 +1,12 @@
-import { FormEvent, useCallback, useState } from 'react';
+import { FormEvent, useCallback, useMemo, useState } from 'react';
 import ReactFlow, { addEdge, Background, Connection, Edge, Node, useEdgesState, useNodesState } from 'react-flow-renderer';
+import { DefaultNode } from './DefaultNode';
+import { TriggerNode } from './TriggerNode';
 
 const initialNodes: Node[] = [
 	{
 		id: '1',
+		type: 'defaultNode',
 		data: {
 			label: 'First Node'
 		},
@@ -14,12 +17,13 @@ const initialNodes: Node[] = [
 	},
 	{
 		id: '2',
+		type: 'triggerNode',
 		data: {
 			label: 'Second Node'
 		},
 		position: {
-			x: 400,
-			y: 400
+			x: 100,
+			y: 100
 		},
 	}
 ];
@@ -35,6 +39,11 @@ export function Flow() {
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
 	const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 	const [newNodeLabel, setNewNodeLabel] = useState('');
+
+	const nodeTypes = useMemo(() => ({
+		defaultNode: DefaultNode,
+		triggerNode: TriggerNode
+	}), []);
 
 	const onConnect = useCallback((param: Edge | Connection) => {
 		setEdges((previousEdges) => addEdge(param, previousEdges));
@@ -85,6 +94,7 @@ export function Flow() {
 				connectionLineStyle={{
 					stroke: 'red'
 				}}
+				nodeTypes={nodeTypes}
 				fitView
 				deleteKeyCode="Delete"
 				style={{
