@@ -1,3 +1,4 @@
+import { Flow } from './components/Flow';
 import { GlobalStyle } from './styles/global';
 
 export function App() {
@@ -5,6 +6,7 @@ export function App() {
     <>
       <GlobalStyle />
       <h1>Hello, React Flow Renderer Example!</h1>
+      <Flow />
     </>
   );
 }
