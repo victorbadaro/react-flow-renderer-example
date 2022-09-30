@@ -40,6 +40,20 @@ export function Flow() {
 		setEdges((previousEdges) => addEdge(param, previousEdges));
 	}, [setEdges]);
 
+	const onNodesDelete = useCallback((nodesToBeRemoved: Node[]) => {
+		const nodeIdsToBeRemoved = nodesToBeRemoved.map((node) => node.id);
+		const filteredNodes = nodes.filter((node) => !nodeIdsToBeRemoved.includes(node.id));
+
+		setNodes(filteredNodes);
+	}, [nodes]);
+
+	const onEdgesDelete = useCallback((edgesToBeRemoved: Edge[]) => {
+		const edgeIdsToBeRemoved = edgesToBeRemoved.map((edge) => edge.id);
+		const filteredEdges = edges.filter((edge) => !edgeIdsToBeRemoved.includes(edge.id));
+
+		setEdges(filteredEdges);
+	}, []);
+
 	function handleFormSubmit(event: FormEvent) {
 		event.preventDefault();
 
@@ -65,7 +79,14 @@ export function Flow() {
 				edges={edges}
 				onNodesChange={onNodesChange}
 				onEdgesChange={onEdgesChange}
+				onNodesDelete={onNodesDelete}
+				onEdgesDelete={onEdgesDelete}
 				onConnect={onConnect}
+				connectionLineStyle={{
+					stroke: 'red'
+				}}
+				fitView
+				deleteKeyCode="Delete"
 				style={{
 					height: '500px'
 				}}
