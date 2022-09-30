@@ -1,29 +1,50 @@
-import { FormEvent, useState } from 'react';
-import ReactFlowRenderer, { Background, Node } from 'react-flow-renderer';
+import { FormEvent, useCallback, useState } from 'react';
+import ReactFlow, { addEdge, Background, Connection, Edge, Node, useEdgesState, useNodesState } from 'react-flow-renderer';
 
 const initialNodes: Node[] = [
   {
     id: '1',
-    type: 'input',
     data: {
       label: 'First Node'
     },
     position: {
       x: 0,
       y: 0
-    }
+    },
+  },
+  {
+    id: '2',
+    data: {
+      label: 'Second Node'
+    },
+    position: {
+      x: 400,
+      y: 400
+    },
+  }
+];
+const initialEdges: Edge[] = [
+  {
+    id: crypto.randomUUID(),
+    source: '1',
+    target: '2'
   }
 ];
 
 export function Flow() {
-  const [nodes, setNodes] = useState(initialNodes);
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [newNodeLabel, setNewNodeLabel] = useState('');
+
+  const onConnect = useCallback((params: Edge | Connection) => {
+    setEdges((previousEdges) => addEdge(params, previousEdges));
+  }, [setEdges]);
 
   function handleFormSubmit(event: FormEvent) {
     event.preventDefault();
 
     const newNode: Node = {
-      id: String(nodes.length + 1),
+      id: crypto.randomUUID(),
       data: {
         label: newNodeLabel
       },
@@ -39,14 +60,18 @@ export function Flow() {
 
   return (
     <>
-      <ReactFlowRenderer
-        defaultNodes={nodes}
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onConnect={onConnect}
         style={{
           height: '500px'
         }}
       >
         <Background />
-      </ReactFlowRenderer>
+      </ReactFlow>
 
       <form onSubmit={handleFormSubmit}>
         <input
