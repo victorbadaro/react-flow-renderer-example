@@ -36,8 +36,8 @@ export function Flow() {
 	const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 	const [newNodeLabel, setNewNodeLabel] = useState('');
 
-	const onConnect = useCallback((params: Edge | Connection) => {
-		setEdges((previousEdges) => addEdge(params, previousEdges));
+	const onConnect = useCallback((param: Edge | Connection) => {
+		setEdges((previousEdges) => addEdge(param, previousEdges));
 	}, [setEdges]);
 
 	function handleFormSubmit(event: FormEvent) {
