@@ -1,3 +1,9 @@
+import { Container } from '@/components/Container';
+
 export function ToolBoxExample() {
-	return <h1>Tool box example</h1>;
+	return (
+		<Container>
+			<h1>Tool box example</h1>
+		</Container>
+	);
 }
