@@ -7,11 +7,7 @@ export function ToolBoxExample() {
 	return (
 		<Container>
 			<ToolBoxExampleContainer>
-				<ReactFlow
-					style={{
-						height: '500px'
-					}}
-				>
+				<ReactFlow>
 					<Background />
 				</ReactFlow>
 				<ToolBox />
