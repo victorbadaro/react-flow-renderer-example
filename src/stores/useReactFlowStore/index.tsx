@@ -22,5 +22,11 @@ export const useReactFlowStore = create<ReactFlowStore>((set, get) => ({
 		set({
 			edges: addEdge(connection, get().edges)
 		});
-	}
+	},
+
+	addNode(node) {
+		set({
+			nodes: [ ...get().nodes, node ]
+		});
+	},
 }));

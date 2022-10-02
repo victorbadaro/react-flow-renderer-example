@@ -6,4 +6,5 @@ export interface ReactFlowStore {
 	onNodesChange: OnNodesChange;
 	onEdgesChange: OnEdgesChange;
 	onConnect: OnConnect;
+	addNode: (node: Node) => void;
 }
