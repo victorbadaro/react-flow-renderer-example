@@ -1,9 +1,16 @@
 import { Container } from '@/components/Container';
+import ReactFlow, { Background } from 'react-flow-renderer';
 
 export function ToolBoxExample() {
 	return (
 		<Container>
-			<h1>Tool box example</h1>
+			<ReactFlow
+				style={{
+					height: '500px'
+				}}
+			>
+				<Background />
+			</ReactFlow>
 		</Container>
 	);
 }
