@@ -16,6 +16,7 @@ export const ToolBoxContainer = styled.aside`
 		width: 100%;
 		border: none;
 		background-color: transparent;
+		color: blueviolet;
 
 		transition: background-color 200ms;
 

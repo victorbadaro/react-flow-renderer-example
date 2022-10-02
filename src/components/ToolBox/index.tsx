@@ -1,10 +1,15 @@
+import { FiGithub, FiGitlab } from 'react-icons/fi';
 import { ToolBoxContainer } from './styles';
 
 export function ToolBox() {
 	return (
 		<ToolBoxContainer>
-			<button type="button">git</button>
-			<button type="button">node</button>
+			<button type="button">
+				<FiGithub />
+			</button>
+			<button type="button">
+				<FiGitlab />
+			</button>
 		</ToolBoxContainer>
 	);
 }
