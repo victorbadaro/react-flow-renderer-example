@@ -1,8 +1,15 @@
 import { Container } from '@/components/Container';
+import { GitHubNode } from '@/components/GitHubNode';
+import { GitLabNode } from '@/components/GitLabNode';
 import { ToolBox } from '@/components/ToolBox';
 import { useReactFlowStore } from '@/stores/useReactFlowStore';
 import ReactFlow, { Background } from 'react-flow-renderer';
 import { ToolBoxExampleContainer } from './styles';
+
+const nodeTypes = {
+	github: GitHubNode,
+	gitlab: GitLabNode
+};
 
 export function ToolBoxExample() {
 	const nodes = useReactFlowStore((state) => state.nodes);
@@ -20,6 +27,7 @@ export function ToolBoxExample() {
 					onNodesChange={onNodesChange}
 					onEdgesChange={onEdgesChange}
 					onConnect={onConnect}
+					nodeTypes={nodeTypes}
 					fitView
 					deleteKeyCode="Delete"
 				>
