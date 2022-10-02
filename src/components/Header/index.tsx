@@ -8,7 +8,6 @@ export function Header() {
 			<Container>
 				<nav>
 					<Link to="/toolbox-example">ToolBox Example</Link>
-					<Link to="/toolbox-example">ToolBox Example</Link>
 				</nav>
 			</Container>
 		</HeaderContainer>
