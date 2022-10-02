@@ -20,6 +20,8 @@ export function ToolBoxExample() {
 					onNodesChange={onNodesChange}
 					onEdgesChange={onEdgesChange}
 					onConnect={onConnect}
+					fitView
+					deleteKeyCode="Delete"
 				>
 					<Background />
 				</ReactFlow>
