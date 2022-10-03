@@ -4,6 +4,6 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	base: '/react-flow-renderer-example',
+	base: '/react-flow-renderer-example/',
 	plugins: [react(), tsconfigPaths()]
 });
