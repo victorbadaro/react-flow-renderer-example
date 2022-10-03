@@ -1,31 +1,28 @@
-name: CI
+name: Blog CI
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    runs-on: "ubuntu-latest"
     steps:
-			- name: Repository checkout
-      	uses: actions/checkout@v3
+      - name: Repository checkout
+        uses: actions/checkout@v3
 
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: "16"
 
-			- name: Build
-				run: |
-					yarn
-					yarn build
-
-			- name: Deploy to gh-pages
+      - name: Build
+        run: |
+          yarn
+          yarn build
+      - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./dist/
